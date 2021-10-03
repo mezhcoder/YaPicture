@@ -6,7 +6,7 @@ const { mainRouter } = require('./routers');
 const PORT = process.env.PORT || 8080;
 
 const app = express();
-setupMiddlewares(app);
+// setupMiddlewares(app);
 app.use('/', mainRouter);
 
 const server = http.createServer(app);

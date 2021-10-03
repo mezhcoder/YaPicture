@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/mezhcoder/YaPicture#readme",
   "dependencies": {
+    "backrem": "^1.1.0",
     "cors": "^2.8.5",
     "eslint": "^7.32.0",
     "express": "^4.17.1",
