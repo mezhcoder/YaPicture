@@ -3,8 +3,6 @@ const { dbDumpFile } = require('../config');
 const { prettifyJsonToString } = require('../utils/prettifyJsonToString');
 const { exists } = require('../utils/fs');
 const Picture = require('../entites/Picture');
-
-
 const fs = require('../utils/fs');
 
 
@@ -28,6 +26,7 @@ class Database extends EventEmitter {
     }
 
     async getPicture(id) {
+        if (!this.idToPicture[id]) return null;
         const obj = {};
         obj["id"] = id;
         obj["createdAt"] = this.idToPicture[id].createdAt;
@@ -35,8 +34,10 @@ class Database extends EventEmitter {
         return obj;
     }
 
-    async findPicture(pictureId) {
-        return this.idToPicture[pictureId];
+    async removePicture(id) {
+        delete this.idToPicture[id];
+        await fs.removeFile(process.cwd() + "/files/" + id + ".jpeg");
+        this.emit('changed');
     }
 
     async initFromDump() {

@@ -6,5 +6,7 @@ const upload = multer({ dest: 'files/' })
 const mainRouter = new express.Router();
 mainRouter.post('/upload', upload.single('image'), api.uploadPicture);
 mainRouter.get('/list', api.listPictures);
+mainRouter.get('/image/:id', api.downloadPicture);
+mainRouter.delete('/image/:id', api.deletePicture);
 
 exports.mainRouter = mainRouter;

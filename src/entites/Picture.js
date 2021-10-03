@@ -26,10 +26,6 @@ module.exports = class Picture {
         });
     }
 
-    async removeOriginal() {
-        await removeFile(path.resolve(pictureFolder, this.originalFilename));
-    }
-
     toJSON() {
         return {
             id: this.id,
