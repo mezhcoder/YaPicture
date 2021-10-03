@@ -1,7 +1,7 @@
 const path = require('path');
 
 const { nanoid } = require('nanoid');
-const { picturePathFolder } = require('../config');
+const { pictureFolder } = require('../config');
 const { writeFile, removeFile } = require('../utils/fs');
 
 
@@ -15,11 +15,11 @@ module.exports = class Picture {
 
     async saveOriginal(data) {
         this.size = Buffer.byteLength(data);
-        await writeFile(path.resolve(picturePathFolder, this.originalFilename), data);
+        await writeFile(path.resolve(pictureFolder, this.originalFilename), data);
     }
 
     async removeOriginal() {
-        await removeFile(path.resolve(picturePathFolder, this.originalFilename));
+        await removeFile(path.resolve(pictureFolder, this.originalFilename));
     }
 
     toJSON() {

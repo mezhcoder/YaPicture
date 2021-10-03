@@ -8,7 +8,7 @@ module.exports = async (req, res, next) => {
 
         await db.insert(picture)
 
-        return res.json(picture.toJSON()['id']);
+        return res.json(await db.getPicture(picture.id));
     } catch (err) {
         return next(err);
     }

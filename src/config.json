@@ -1,4 +1,4 @@
 {
-  "picturePathFolder": "../files",
-  "dbDumpFile": "../files/db.json"
+  "pictureFolder": "files",
+  "dbDumpFile": "/files/db.json"
 }

@@ -40,11 +40,10 @@ class Database extends EventEmitter {
     }
 
     async initFromDump() {
-        if (await exists(dbDumpFile) === false) {
+        if (await exists(process.cwd() + dbDumpFile) === false) {
             return;
         }
-
-        const dump = require("../" + dbDumpFile);
+        const dump = require(process.cwd() + dbDumpFile);
 
         if (typeof dump === 'object') {
             this.idToPicture = {};
@@ -65,7 +64,7 @@ const db = new Database();
 db.initFromDump();
 //
 db.on('changed', () => {
-    fs.writeFile(dbDumpFile, prettifyJsonToString(db.toJSON()));
+    fs.writeFile(process.cwd() + dbDumpFile, prettifyJsonToString(db.toJSON()));
 });
 
 module.exports = db;
