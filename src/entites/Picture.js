@@ -3,6 +3,7 @@ const path = require('path');
 const { nanoid } = require('nanoid');
 const { pictureFolder } = require('../config');
 const { writeFile, removeFile } = require('../utils/fs');
+const fs = require('fs');
 
 
 module.exports = class Picture {
@@ -13,9 +14,16 @@ module.exports = class Picture {
         this.originalFilename = `${this.id}_original.jpeg`;
     }
 
-    async saveOriginal(data) {
-        this.size = Buffer.byteLength(data);
-        await writeFile(path.resolve(pictureFolder, this.originalFilename), data);
+    async saveOriginal(file) {
+        let tmp_path = process.cwd() + "/" + file.path;
+        let target_path = process.cwd() + '/files/' + this.id + ".jpeg";
+        let src = await fs.createReadStream(tmp_path);
+        let dest = await fs.createWriteStream(target_path);
+        src.pipe(dest);
+        this.size = file.size;
+        src.on('end', function() {
+            fs.unlink(tmp_path, function() {});
+        });
     }
 
     async removeOriginal() {

@@ -3,13 +3,13 @@ const Picture = require('../../entites/Picture');
 
 module.exports = async (req, res, next) => {
     try {
-        if (!req.files) {
+        if (!req.file) {
             res.status(400).json({ message: "Not found file" });
             return;
         }
 
         const picture = new Picture();
-        await picture.saveOriginal(req.files[''].data);
+        await picture.saveOriginal(req.file);
 
         await db.insert(picture)
 
