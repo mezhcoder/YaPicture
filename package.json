@@ -1,0 +1,35 @@
+{
+  "name": "picutre",
+  "version": "1.0.0",
+  "description": "Yandex SRI program can change background in picuture",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/server",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mezhcoder/YaPicture.git"
+  },
+  "author": "zhcoder",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mezhcoder/YaPicture/issues"
+  },
+  "homepage": "https://github.com/mezhcoder/YaPicture#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "eslint": "^7.32.0",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.1",
+    "express-rate-limit": "^5.4.0",
+    "express-slow-down": "^1.4.0",
+    "helmet": "^4.6.0",
+    "http-proxy-middleware": "^2.0.1",
+    "husky": "^7.0.2",
+    "lint-staged": "^11.1.2",
+    "nanoid": "^3.1.28",
+    "prettier": "^2.4.1"
+  }
+}
