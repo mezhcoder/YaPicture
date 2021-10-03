@@ -19,6 +19,22 @@ class Database extends EventEmitter {
         this.emit('changed');
     }
 
+    async getPictures() {
+        const result = [];
+        for (let key in this.idToPicture) {
+            result.push(await this.getPicture(key));
+        }
+        return result;
+    }
+
+    async getPicture(id) {
+        const obj = {};
+        obj["id"] = id;
+        obj["createdAt"] = this.idToPicture[id].createdAt;
+        obj["size"] = this.idToPicture[id].size;
+        return obj;
+    }
+
     async findPicture(pictureId) {
         return this.idToPicture[pictureId];
     }
@@ -40,7 +56,7 @@ class Database extends EventEmitter {
         }
     }
 
-    async toJSON() {
+    toJSON() {
         return this.idToPicture;
     }
 }

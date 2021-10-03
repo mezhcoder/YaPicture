@@ -7,11 +7,9 @@ const { mainRouter } = require('./routers');
 const PORT = process.env.PORT || 8080;
 
 const app = express();
-app.use(fileUpload());
 setupMiddlewares(app);
+app.use(fileUpload());
 app.use('/', mainRouter);
-
-
 
 const server = http.createServer(app);
 server.listen(PORT, () => {
